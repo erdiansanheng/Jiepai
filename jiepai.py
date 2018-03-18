@@ -109,7 +109,9 @@ def download_image(url):
 
 def save_image(content):
     file_path = '{0}/{1}/{2}.{3}'.format(os.getcwd(), 'images', md5(content).hexdigest(), 'jpg')
-    if not os.path.exists(file_path):
+    if os.path.exists(file_path):
+        print('图片已存在，不再保存')
+    elif not os.path.exists(file_path):
         with open(file_path, 'wb') as f:
             f.write(content)
             f.close()
